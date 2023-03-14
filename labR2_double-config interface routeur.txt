@@ -1,0 +1,38 @@
+ena
+conf t
+hostname R1
+end
+ena
+conf t
+interface Gig0/0
+ip address 192.168.20.126 255.255.255.128
+no shu
+end
+ena
+conf t
+interface Gig0/1
+ip address 10.0.0.1 255.0.0.0
+no shu
+end
+ena
+show ip interface brief
+
+ena
+conf t
+hostname R2
+end
+ena
+conf t
+interface Gig0/1
+ip address 192.168.40.124 255.255.255.128
+no shu
+end
+ena
+conf t
+interface Gig0/0
+ip address 10.0.0.2 255.0.0.0
+no shu
+end
+ena
+show ip interface brief
+

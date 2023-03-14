@@ -1,0 +1,42 @@
+
+
+Routage dynamique EIGRP > 
+
+https://www.fingerinthenet.com/eigrp/
+https://boowiki.info/art/protocoles-de-routage/interior-gateway-protocol-routage-avancees.html
+
+définition: 
+https://www.tala-informatique.fr/wiki/images/5/53/EIGRP.pdf
+
+EIGRP est un protocole de routage à vecteur de distance IP, 
+avec une optimisation permettant de minimiser l'instabilité de routage due aussi bien au changement de topologie qu'à l'utilisation de la bande passante et la puissance du processeur du routeur. 
+
+
+Avantages:
+- fonctionner avec routage sans classe interdomaine pour permettre l'utilisation de masques de sous-réseau de longueur variable (Masque de longueur variable de sous-réseau - VLSM) 
+- permettre à des processus de routage pour séparer les différents protocoles réseau: IP, IPX et AppleTalk.
+
+Inconvénient :
+-Être un protocole propriétaire est uniquement sur des équipements Cisco.
+- En outre, vous pouvez rencontrer une perte momentanée de la connectivité (trou noir) dans les périodes où les routeurs recalculent chemins réseau, 
+parce que, par exemple, la perte de connectivité sur un lien.
+
+config :
+Example :
+
+Router>ena
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router eigrp 1
+Router(config-router)#network 192.168.30.0
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 1: Neighbor 192.168.30.1 (GigabitEthernet0/1) is up: new adjacency
+Router(config-router)#network 192.168.40.0
+Router(config-router)#redistribute connected
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+Router#wr
+Building configuration...
+[OK]
+Router#

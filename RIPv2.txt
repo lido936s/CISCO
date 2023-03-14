@@ -1,0 +1,67 @@
+
+Routage dynamique > RIPv2
+
+
+Protocole à vecteur de distance
+
+Un protocole de routage à vecteur de distance est celui qui utilise un algorithme de routage qui additionne les distances pour trouver les meilleures routes (Bellman-Ford).
+
+    Les routeurs envoient l’entièreté de leur table de routage aux voisins.
+    Ces protocoles sont sensibles aux boucles de routage.
+    Dans ce type de protocole, aucun routeur ne remplit de fonction particulière. 
+    On parlera de connaissance “plate” de l’inter-réseau ou de routage non-hiérarchique.
+    Ils convergent lentement.
+
+On citera RIP et IGRP (propriétaire obsolète) comme étant représentatifs. 
+EIGRP est aussi un protocole à vecteur de distance avancé entièrement optimisé par Cisco Systems qui ne présente pas ces désavantages.
+
+RIPv2 (1993-1998) : Multicast 224.0.0.9, authentification, classless, UDP520, RFC2453
+
+Notion de Multicast > diffusion simultanée
+https://www.techno-science.net/definition/3782.html
+Le terme multicast définit une connexion réseau multi-points.
+On entend par multicast le fait de communiquer simultanément avec un groupe d'ordinateurs identifiés par une adresse spécifique (adresse de groupe).
+Le Multicast se definie par le protocole IGMP :
+Le protocole IGMP est utilisé par le protocole IP pour l'adhésion aux groupes multicast.
+
+
+config :
+https://www.it-connect.fr/cisco-configuration-du-routage-rip/
+
+Example :
+
+Routeur1#ena
+Routeur1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Routeur1(config)#router rip
+Routeur1(config-router)#version 2
+Routeur1(config-router)#no auto-summary
+Routeur1(config-router)#network 10.0.1.0
+Routeur1(config-router)#network 172.16.0.0
+Routeur1(config-router)#exit
+Routeur1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+
+Routeur1#show ip route rip
+
+
+
+copy-paste:
+
+ena
+conf t
+router rip
+version 2
+no auto-summary -> désactivation de l’agrégation de routes
+network  -> déclaration d’un réseau
+exit
+wr
+- Verification :
+Routeur1#
+show ip route
+show ip route rip
+show ip protocols
+debug ip rip -> permet de voir le debug du protocole RIP (utile en cas incident ou de mauvaise manipulation)

@@ -1,0 +1,57 @@
+1. Configurez le nom d’hôte du routeur.
+ena
+conf t
+hostname Rx
+end
+
+2. Désactivez la recherche DNS.
+
+ena
+conf t
+no ip domain-lookup
+end
+
+3. Configurez un mot de passe de mode d’exécution privilégié. > fonction vty 0 5 afin de définir le niveau de privilége !
+ena
+conf t
+line vty 0 5
+password cisco
+exit
+end
+
+4. Configurez un mot de passe pour les connexions console.
+ena
+conf t
+line con 0
+password class
+login
+exit
+end
+
+5.Attribuer une adresse IP à un interface Ethernet où GigaEthernet avec les ports 0/0 où 0/1 en paralélle si ses un cable série donc sérial DTE où DCE les ports sera 0/0/1 est 0/1/1 !  
+Attention la commande no shu est important pour activé l'interface est quelle reste active "Enabled où up"
+ena
+conf t
+interface Fa ou gi
+ip address x.x.x.x x.x.x.x
+no shu
+end
+
+6.Mise en place du routage statique
+théorie:
+le network est le réseau visé ainsi que le next hop qui est la passerelle du routeur du network 
+
+ex:
+ip route network mask next hop
+sur le routeur R1 > le routeur R1 à une passerelle en 192.168.1.254 est passe par la passerelle en 192.168.2.254 pour atteindre avec le réseau en 192.168.2.0 !
+ip route 192.168.1.0 255.255.255.0 192.168.2.254
+sur le routeur R2  > le routeur R2 à une passerelle en 192.168.2.254 est passe par la passerelle en 192.168.1.254 pour atteindre avec le réseau en 192.168.1.0 !
+ip route 192.168.2.0 255.255.255.0 192.168.1.254
+
+ip route {"@Réseau" "/CIDR" "@GW:Gateway"} 
+astuce : Se repérer dans la direction à suivre pour taper correctement la commande est quelle soit surtout fonctionnel !
+ip route {"@Net:R2" "/CIDR:R2" "@GW:R1"} > ip route {"@Net:R1" "/CIDR:R1" "@GW:R2"}
+
+7. partie verification > info sur la ou les route statique ainsi que les interfaces utilisé afin de définir les bons paramétre dans la création des routes statique .
+show ip route
+show ip interface brief

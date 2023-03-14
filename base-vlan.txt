@@ -1,0 +1,53 @@
+les bases des VLAN > https://www.ciscomadesimple.be/2014/03/20/trunk-dot1q-et-vlan-natif/
+c'est commandes sont à réalisé sur des commutateur > Switch
+
+1. le mode acces > passage d'un seul Vlan > tagged
+ena
+conf t
+vlan "name"
+name "description"
+exit
+ena
+conf t
+interface fastEthernet 0/0 > sans l'option range
+interface range fastEthernet 0/"range par un tiret -" > donne l'acces a un ensemble de ports dédié sur le switch
+switchport mode access
+switchport access vlan "name"
+exit
+> sans range remplacer la ligne interface range fastEthernet 0/"range par un tiret -" par juste Interface FastEthernet "port"
+
+2. le mode trunk > passage de plusieurs Vlan au méme port > untagged  
+ena
+conf t
+interface FastEthernet 0/24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+
+3. le mode Inter-Vlan
+Router :
+ena
+conf t 
+interface fa0/0.1>
+encapsulation dot1q "VLAN id" > le type de packet envoyé !
+ip address 192.168.20.254 255.255.255.0 > Zone d'addressage IP
+no shutdown
+exit
+Switch
+ena
+conf t
+interface fa0/24
+switchport mode trunk 
+switchport trunk allowed vlan 14,89
+switchport trunk natif acces vlan 1
+no shutdown
+exit
+
+
+
+
+
+
+5.verification
+show vlan brief
+

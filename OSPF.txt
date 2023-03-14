@@ -1,0 +1,47 @@
+
+OSPF > Open Shortest Path First 
+
+
+définitions
+L’OSPF est l’un des protocoles de routage les plus utilisés aujourd’hui. Il possède de très bons atouts,
+et convient très bien aux grands réseaux. De plus, c’est un protocole standard, et donc utilisable par tous les constructeurs.
+- convergeance rapide est mentient des liaisons de transmission des paquets.
+
+
+
+Avantages: http://www.ordinateur.cc/r%C3%A9seaux/R%C3%A9seau-Internet/69237.html
+-une nouvelle composante dans le processus intérieur de routage Internet . Le protocole de routage OSPF est conçu de choisir la voie la plus efficace pour livrer des paquets IP au sein d'un seul réseau. -Protocole OSPF est utilisé pour remplacer le protocole RIP plus dans le processus de routage d' Internet .
+
+Inconvénient:
+- Le protocole OSPF exige des connaissances avancées sur les réseaux complexes, ce qui en fait un protocole moins facile à apprendre que d'autres. 
+- Le routage OSPF ne peut être adapté lorsque des routeurs supplémentaires sont ajoutés au réseau.
+
+configuration:
+Router>ena
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.30.0 0.0.0.3 area 0
+Router(config-router)#network 192.168.40.0 0.0.0.3 area 0
+Router(config-router)#network 192.168.40.0 0.0.0.3 area 0
+
+verification: https://www.tutorialandexample.com/verifying-ospf-configuration
+Router#show ip route > basique
+Router#show ip ospf database
+Router#show ip ospf neighbor > utile
+
+en cas d'erreur : https://www.laintimes.com/effacer-une-configuration-ospf/
+Router>en
+Router#clear ip ospf process
+Reset ALL OSPF processes? [no]: yes
+
+Dns: desactiver
+désactiver la recherche DNS ("domain-lookup") en mode console
+Routeur(config)# line vty 0 5 > supprimer le communication distante
+Routeur(config-line)# no ip domain-lookup
+
+console :
+Routeur-cisco(config)#line con 0
+Routeur-cisco(config-line)#password cisco
+Routeur-cisco(config-line)#login
+Routeur-cisco(config-line)#exit

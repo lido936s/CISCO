@@ -1,0 +1,11 @@
+sur le routeur R1 > le routeur R1 à une passerelle en 192.168.20.126 est passe par la passerelle en 192.168.40.124 pour atteindre avec le réseau en 192.168.40.0 !
+ip route 192.168.20.0 255.255.255.128 192.168.40.124
+
+Cas de figure d'un réseau interne entre deux routeurs en 10.0.0.0/8 !
+
+sur le routeur R1 > le routeur R1 à une passerelle en 192.168.20.126 est passe par la passerelle en 192.168.40.124 pour atteindre avec le réseau en 192.168.20.0 !
+ip route  255.255.255.128 192.168.40.124
+
+sur le routeur R2  > le routeur R2 à une passerelle en 192.168.40.124 est passe par la passerelle en 10.0.0.2 pour atteindre avec le réseau en 192.168.40.0 !
+ip route 192.168.40.0 255.255.255.128 192.168.20.126
+

@@ -1,0 +1,7 @@
+Remettre à zéro un routeur via la ligne de commande IOS
+
+La meilleure méthode pour remettre à zéro un routeur est donc de supprimer le “startup-config” et de redémarrer le routeur !
+
+ena
+erase startup-config
+reload

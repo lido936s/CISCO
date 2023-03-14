@@ -1,0 +1,20 @@
+Effacement et rechargement du routeur > https://www.oreilly.com/library/view/cisco-ios-cookbook/0596527225/ch01s06.html
+
+1.backup 
+copy running-config startup-config
+
+2.Effacement et rechargement du routeur
+ena
+erase startup-config
+press "enter"
+end
+ena
+conf t
+reload
+press "n" et ensuite "enter"
+delais de rechargement du routeur
+press "n" et ensuite "enter"
+
+verification:
+show running-config
+

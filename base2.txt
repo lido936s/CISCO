@@ -1,0 +1,45 @@
+Configuration Basique De BGP > https://www.networklab.fr/bgp-configuration-basique/
+
+    Adresses IP
+    Interfaces Loopback
+    OSPF sur R1, R2 et R3
+
+1.Partie BGP
+
+ena
+conf t
+R1(config)#router bgp 300
+R1(config-router)#neighbor 14.0.0.4 remote-as 100
+
+R3(config)#router bgp 300
+R3(config-router)#neighbor 35.0.0.5 remote-as 200
+
+R4(config)#router bgp 100
+R4(config-router)#neighbor 14.0.0.1 remote-as 300
+
+R5(config)#router bgp 200
+R5(config-router)#neighbor 35.0.0.3 remote-as 300
+
+2.Partie OSPF > Relation iBGP > OSPF Version BGP 
+
+ena
+conf t
+R1(config)#interface loopback 0
+R1(config-if)#ip address 1.1.1.1 255.255.255.255
+R1(config)#router ospf 1
+R1(config-router)#network 1.1.1.1 0.0.0.0 area 0
+
+R3(config)#interface loopback 0
+R3(config-if)#ip address 3.3.3.3 255.255.255.255
+R3(config)#router ospf 1
+R3(config-router)#network 3.3.3.3 0.0.0.0 area 0
+
+
+3. partie verification
+
+show ip route
+show ip route RIP
+show ip protocols
+show ip interface brief
+show ip bgp > en complément d'un show ip ospf
+
